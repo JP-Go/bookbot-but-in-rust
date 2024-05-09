@@ -43,7 +43,8 @@ fn generate_report_lines(
         .filter(|(char, _)| char.is_alphabetic())
         .collect();
 
-    report_items.sort_by_key(|(_, v)| -(*v as isize));
+    report_items.sort_by_key(|(_, v)| *v);
+    report_items.reverse();
 
     let mut headers = Vec::from([header, summary]);
     headers.extend(report_items.iter().map(to_report_line));
